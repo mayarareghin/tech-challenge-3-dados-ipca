@@ -102,7 +102,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 5. Inicialize o banco de dados com o Alembic:
 ```bash
-alembic upgrade head
+poetry run alembic upgrade head
 ```
 
 6. Inicie o servidor FastAPI com Uvicorn:
