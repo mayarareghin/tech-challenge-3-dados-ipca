@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+
+# VSCode settings
+.vscode/
+
+
+# SQLite database and logs
+*.sqlite3
+*.db
+*.log
+
+# FastAPI OpenAPI docs cache
+openapi.json
+
+# Secrets or env files (if used)
+.env
+.env.*
+
