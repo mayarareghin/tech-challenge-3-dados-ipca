@@ -1,4 +1,4 @@
-# Tech Challenge - Fase 2 
+# Tech Challenge - Fase 3
 
 Projeto desenvolvido para a pós-graduação em Machine Learning Engineering da FIAP. Neste projeto desenvolvemos uma API rest utilizando Fast API para obter dados do IPCA (índice Nacional de Preços ao Consumidor Amplo) do IBGE. A API conta com uma autenticação de usuários por JWT. Os dados são usados para treinar um modelo de Machine Learning com o objetivo de prever a inflação futura.
 
@@ -102,12 +102,12 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 5. Inicialize o banco de dados com o Alembic:
 ```bash
-alembic upgrade head
+poetry run alembic upgrade head
 ```
 
 6. Inicie o servidor FastAPI com Uvicorn:
 ```bash
-uvicorn api.app:app --reload
+poetry uvicorn api.app:app --reload
 ```
 ## Utilizando a API
 
