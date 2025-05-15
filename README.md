@@ -107,7 +107,7 @@ poetry run alembic upgrade head
 
 6. Inicie o servidor FastAPI com Uvicorn:
 ```bash
-uvicorn api.app:app --reload
+poetry uvicorn api.app:app --reload
 ```
 ## Utilizando a API
 
