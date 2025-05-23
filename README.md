@@ -1,19 +1,40 @@
 # Tech Challenge - Fase 3
 
-Projeto desenvolvido para a pós-graduação em Machine Learning Engineering da FIAP. Neste projeto desenvolvemos uma API rest utilizando Fast API para obter dados do IPCA (índice Nacional de Preços ao Consumidor Amplo) do IBGE. A API conta com uma autenticação de usuários por JWT. Os dados são usados para treinar um modelo de Machine Learning com o objetivo de prever a inflação futura.
+Projeto desenvolvido para a pós-graduação em Machine Learning Engineering da FIAP. Neste projeto desenvolvemos uma API rest utilizando Fast API para obter dados do IPCA (índice Nacional de Preços ao Consumidor Amplo) do IBGE. A API conta com uma autenticação de usuários por JWT. Os são são usados para treinar um modelo de Machine Learning com o objetivo de prever a inflação futura. Para serem utilizados no modelo, os dados obtidos através da API passam por uma transformação através de um script python contido na pasta Transformacao-base-IPCA.
 
 Desenvolvido por: Bianca Gobe, Emerson Quirino e Mayara Reghin (Grupo 37)
 
+##  📁 Estrutura do projeto
 
-## 🚀 Funcionalidades
+techchallenge-3-dados-ipca/
 
-**Download de arquivos:** Download de arquivo contendo dados do IPCA em formato JSON.
+├── API_DADOS_IPCA/
+
+├── Transformacao-base-IPCA/
+
+│ ├──Transformacao_base_IPCA.py
+
+├── prevendo_a_inflacao.ipnyb
+
+├── README.md
+
+**API_DADOS_IPCA/:** diretório com os arquivos da API. Será detalhado abaixo.
+
+**Transformacao-base-IPCA/:** Script com as transformações da base de dados. 
+
+**prevendo_a_inflacao.ipnyb:** notebook onde foi desenvolvido o modelo de machine learning.
+
+**README.ms:** contém as informações do projeto. 
+
+## 🚀 Funcionalidades da API
+
+**Download de arquivos:** Download de arquivo contendo dados do IPCA em formato csv.
 
 **Autenticação:** As rotas da API são protegidas por autenticação JWT (JSON Web Token), garantindo maior segurança e controle de acesso. Os usuários podem criar suas contas, alterar seus dados, consultar e deletar sua conta. O token é válido por 30 minutos a partir do momento do login e pode ser reiniciado.
 
 **Documentação:** Documentação automática com Swagger
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura da API
 
 API_DADOS_IPCA/
 
@@ -111,12 +132,29 @@ poetry uvicorn api.app:app --reload
 ```
 ## Utilizando a API
 
-Para ter acesso aos arquivos da API é necessário ter um usuário criado. Após o usuário ser criado, fazer login com e-mail e senha. O botão Authorize na parte superior da API irá automaticamente gerar um Token quando o login for feito por lá. O Token expira automaticamente após 30 minutos, mas é possível atualizar antes do tempoe expirar.
+Para ter acesso aos arquivos da API é necessário ter um usuário criado. Após o usuário ser criado, fazer login com e-mail e senha. O botão Authorize na parte superior da API irá automaticamente gerar um Token quando o login for feito por lá. O Token expira automaticamente após 30 minutos, mas é possível atualizar antes do tempo expirar.
 
 ## 📖 Documentação da API
 A documentação da API é gerada automaticamente com Swagger e está disponível em  http://127.0.0.1:8000/docs/. A rota raiz ( http://127.0.0.1:8000) também direciona automaticamente para a documentação.
 
+## Transformando os dados
 
+Os dados obtidos através da API devem passar pelo processo de transformação antes de serem usados no modelo de machine learning. Para isso, basta salvar o arquivo "Transformacao_base_IPCA.py" no mesmo diretório em que estiver a base de dados e executar. Será gerado um novo arquivo com o nome "dados_ipca_transformados.csv'.
+
+## Sobre o modelo de machine learning
+
+Este modelo tem como propósito prever o índice geral do IPCA, e fazer uma comparação entre o dado real e previsto. O Índice Nacional de Preços ao Consumidor Amplo - IPCA é produzido pelo IBGE desde dezembro de 1979. A partir de novembro de 1985, de acordo com o Decreto n. 91.990, o IPCA passou a ser utilizado como indexador oficial do País, corrigindo salários, aluguéis, taxa de câmbio, poupança, além dos demais ativos monetários. 
+
+OBS: A TABELA UTILIZADA CONTÉM DADOS DE 2020 A 2025.
+
+O modelo utilizado é a regressão linear múltipla, pelas seguintes razões:
+1.	Capacidade de lidar com múltiplos preditores: Diferente da regressão linear simples, que usa apenas uma variável independente, a regressão linear múltipla permite incluir várias variáveis preditoras. Isso é crucial para prever o IPCA, pois a inflação é composta pelos grupos da cesta.
+2.	Melhor ajuste e precisão: Ao considerar múltiplas variáveis, o modelo pode capturar mais nuances e interações entre os fatores que afetam a inflação. Isso geralmente resulta em um ajuste melhor e previsões mais precisas
+3.	Análise de impacto individual: A regressão linear múltipla permite analisar o impacto individual de cada variável preditora sobre o IPCA. Isso ajuda a entender quais fatores têm maior influência na inflação e pode orientar políticas econômicas mais eficazes.
+4.	Flexibilidade: Este modelo pode ser ajustado para incluir variáveis sazonais e defasadas, o que é útil para capturar padrões recorrentes e atrasos nos efeitos das variáveis econômicas.
+5.	Facilidade de interpretação: Os coeficientes estimados na regressão linear múltipla são relativamente fáceis de interpretar, permitindo que analistas e economistas compreendam como cada variável contribui para a previsão do IPCA
+
+O modelo foi escrito em um arquivo do jupyter notebook para facilitar a execução e visualização de gráficos.
 
 ## 🤝 Contribuindo
 Fork este repositório.
